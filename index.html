@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rich Goldstein · Hero Club Workshop Outline</title>
+<meta name="description" content="Workshop outline for Rich Goldstein's Hero Club session: The Power Equation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ffffff;
+    --surface:#f6f3ee;
+    --surface-2:#efebe3;
+    --line:#e3ddd0;
+    --line-strong:#cdc4b0;
+    --ink:#495059;
+    --ink-soft:#7c828c;
+    --ink-faint:#a6aab1;
+    --gold:#c8a668;
+    --gold-line:#d9c191;
+    --gold-soft: rgba(200,166,104,0.14);
+    --orange:#f78945;
+    --orange-dark:#e0722e;
+    --orange-soft: rgba(247,137,69,0.12);
+    color-scheme: light;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background: var(--paper); color: var(--ink);
+    font-family:'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    padding: 0 0 70px;
+  }
+  .wrap{ max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+  .site-header{ border-bottom: 1px solid var(--line); padding: 22px 0; margin-bottom: 30px; }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .mark{ width:34px; height:34px; position:relative; flex:none; }
+  .mark i{ position:absolute; width:22px; height:22px; border: 2px solid var(--gold); transform: rotate(45deg); }
+  .mark i:first-child{ top:0; left:6px; }
+  .mark i:last-child{ top:9px; left:-3px; border-color: var(--orange); opacity:.85; }
+  .wordmark{ line-height:1.15; }
+  .wordmark .name{ font-weight:600; font-size: 19px; letter-spacing: 2.5px; color: var(--ink); }
+  .wordmark .tag{ font-size: 10.5px; letter-spacing: 2px; text-transform:uppercase; color: var(--ink-faint); }
+
+  .intro{ margin-bottom: 30px; }
+  .eyebrow{
+    font-size: 11.5px; letter-spacing: 2px; text-transform:uppercase; color: var(--orange); font-weight:600;
+    margin-bottom: 10px;
+  }
+  h1{
+    font-weight: 300; font-size: clamp(26px, 4vw, 38px); line-height:1.18;
+    color: var(--ink); margin: 0 0 12px; text-wrap: balance;
+  }
+  .sub{ color: var(--ink-soft); font-size: 14.5px; line-height:1.65; max-width: 74ch; margin:0; }
+  .sub b{ color: var(--ink); font-weight:600; }
+
+  /* ---------- Stat row ---------- */
+  .stats{ display:grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 34px; }
+  @media (max-width: 760px){ .stats{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 460px){ .stats{ grid-template-columns: 1fr; } }
+  .stat{ background: var(--surface); border: 1px solid var(--line); padding: 14px 16px; }
+  .stat .k{
+    font-size:10px; letter-spacing:1.3px; text-transform:uppercase; font-weight:700;
+    color: var(--ink-faint); margin-bottom:6px;
+  }
+  .stat .v{ font-size:13px; color: var(--ink); line-height:1.5; }
+
+  .section-head{ margin-bottom: 18px; }
+  .section-head .eyebrow{ margin-bottom:6px; }
+  .section-head h2{ font-weight:300; font-size: clamp(19px,3vw,24px); margin:0; color: var(--ink); }
+
+  /* ---------- Flow timeline ---------- */
+  .flow{ display:flex; flex-direction:column; gap:10px; margin-bottom: 40px; }
+  .flow-item{
+    display:flex; gap:16px; background: var(--paper); border: 1px solid var(--line);
+    border-left: 3px solid var(--line-strong); padding: 16px 18px;
+  }
+  .flow-item.exercise{ border-left-color: var(--orange); background: var(--orange-soft); }
+  .flow-time{
+    flex:none; width: 86px; font-family: ui-monospace, monospace; font-size:11.5px;
+    font-weight:700; color: var(--orange-dark); padding-top:2px;
+  }
+  .flow-body{ flex:1; min-width:0; }
+  .flow-tag{
+    display:inline-block; font-family: ui-monospace, monospace; font-size:10px; letter-spacing:1px;
+    text-transform:uppercase; font-weight:700; color: var(--orange-dark); background: var(--paper);
+    border: 1px solid var(--orange); padding: 3px 8px; margin-bottom:8px;
+  }
+  .flow-title{ font-size:15px; font-weight:700; color: var(--ink); margin:0 0 6px; }
+  .flow-desc{ font-size:13px; color: var(--ink-soft); line-height:1.65; margin:0; }
+  .flow-desc b{ color: var(--ink); font-weight:600; }
+  .flow-cases{ list-style:none; margin:10px 0 0; padding:0; }
+  .flow-cases li{
+    font-size:12.5px; color: var(--ink-soft); line-height:1.6; margin-bottom:7px; padding-left:14px; position:relative;
+  }
+  .flow-cases li:last-child{ margin-bottom:0; }
+  .flow-cases li::before{ content:"–"; position:absolute; left:0; color: var(--orange-dark); }
+  .flow-cases b{ color: var(--ink); font-weight:600; }
+
+  /* ---------- Materials ---------- */
+  .materials{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
+  @media (max-width: 700px){ .materials{ grid-template-columns: 1fr; } }
+  .material-card{ background: var(--surface); border: 1px solid var(--line); padding: 18px 20px; }
+  .material-card h3{ font-size:13px; font-weight:700; color: var(--ink); margin:0 0 12px; }
+  .material-card ul{ margin:0; padding-left:18px; }
+  .material-card li{ font-size:12.5px; color: var(--ink-soft); line-height:1.6; margin-bottom:9px; }
+  .material-card li:last-child{ margin-bottom:0; }
+  .material-card li b{ color: var(--ink); font-weight:600; }
+
+  /* ---------- Callout ---------- */
+  .callout{
+    background: var(--surface-2); border: 1px solid var(--gold-line); border-left: 3px solid var(--gold);
+    padding: 18px 20px; margin-bottom: 40px; font-size:13px; color: var(--ink); line-height:1.65;
+  }
+  .callout b{ color: var(--ink); }
+
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:600;
+    color: var(--orange-dark); text-decoration:none; border-bottom: 1px solid var(--orange-dark); padding-bottom:1px;
+  }
+  .back-link:hover{ color: var(--orange); border-color: var(--orange); }
+
+  .footnote{
+    margin-top: 46px; padding-top:18px; border-top:1px solid var(--line);
+    font-size:12px; color: var(--ink-faint); text-align:center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-header">
+    <div class="brand">
+      <div class="mark"><i></i><i></i></div>
+      <div class="wordmark">
+        <div class="name">GOLDSTEIN</div>
+        <div class="tag">Intellectual Property</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="intro">
+    <div class="eyebrow">Hero Club &middot; November &middot; Prepared by C-Suite Network</div>
+    <h1>Workshop Outline: The Power Equation</h1>
+    <p class="sub">A working draft for Rich's table-format workshop, built from the case studies already pulled from his own content. Ties directly into November's <b>&ldquo;power equation&rdquo;</b> theme and the Dr. Scott Peck case study already planned for that session.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="k">Format</div><div class="v">Interactive, table-based &mdash; not a presentation</div></div>
+    <div class="stat"><div class="k">Length</div><div class="v">60&ndash;75 minutes</div></div>
+    <div class="stat"><div class="k">Audience</div><div class="v">Hero Club &mdash; CEOs, founders, investors</div></div>
+    <div class="stat"><div class="k">Theme link</div><div class="v">Power equation &middot; invisible assets, real leverage</div></div>
+  </div>
+
+  <div class="section-head">
+    <div class="eyebrow">Agenda</div>
+    <h2>Suggested flow</h2>
+  </div>
+
+  <div class="flow">
+    <div class="flow-item">
+      <div class="flow-time">0&ndash;8 min</div>
+      <div class="flow-body">
+        <p class="flow-title">Open with the multiplier</p>
+        <p class="flow-desc">Rich opens with the data point already in his own deck: in 1975 the biggest companies were 5x tangible-to-intangible; today it's the reverse, roughly 1:5.5. <b>IP has become 30x more valuable in four decades.</b> Every person in the room already owns more of this than they think.</p>
+      </div>
+    </div>
+
+    <div class="flow-item exercise">
+      <div class="flow-time">8&ndash;28 min</div>
+      <div class="flow-body">
+        <span class="flow-tag">Table Exercise 1</span>
+        <p class="flow-title">Good IP, Poor IP, No IP</p>
+        <p class="flow-desc">Each table gets ONE real case (not hypothetical) and has 12 minutes to answer: <b>what made the IP good or poor, and what would you have done differently?</b></p>
+        <ul class="flow-cases">
+          <li><b>Table A &mdash; Wayland Furniture:</b> a $100M furniture company's stalled patent finally issues, they build a 3-patent &ldquo;fortress&rdquo; around it, and receive a $300M acquisition offer.</li>
+          <li><b>Table B &mdash; Stephen Key vs. P&amp;G:</b> P&amp;G rejects his label patent outright (&ldquo;we're not going to pay you one penny&rdquo;) &mdash; he still licenses it elsewhere and sells 500M+ units over 20 years.</li>
+          <li><b>Table C &mdash; The $2M EBITDA calculator:</b> same business, same $60K IP spend, three outcomes &mdash; $6M, $6.6M, or $12M at exit, depending only on IP quality.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-time">28&ndash;38 min</div>
+      <div class="flow-body">
+        <p class="flow-title">Report back</p>
+        <p class="flow-desc">One person per table, 90 seconds each. Rich connects the three cases back to one line: <b>the gap between good and poor IP is strategy, not spend.</b></p>
+      </div>
+    </div>
+
+    <div class="flow-item exercise">
+      <div class="flow-time">38&ndash;58 min</div>
+      <div class="flow-body">
+        <span class="flow-tag">Table Exercise 2</span>
+        <p class="flow-title">Find Your Own Rembrandt</p>
+        <p class="flow-desc">Using the 4 categories already in Rich's own deck &mdash; <b>Products (Patent), Branding (Trademark), Content (Copyright), and Know-how</b> &mdash; each attendee lists one asset in their own business they've never formally protected. Tables discuss: is it protectable, is it marketable, and where's the overlap? That overlap is a strategic IP opportunity, not just a legal one.</p>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-time">58&ndash;70 min</div>
+      <div class="flow-body">
+        <p class="flow-title">Close on the exit lens</p>
+        <p class="flow-desc">Rich's own closing line works as-is: <b>&ldquo;Look toward the end, look toward the exit, look toward the acquisition &mdash; that's when you'll get the real ROI.&rdquo;</b> Offer: a free 15-minute 1:1 for anyone who wants to talk through what they found at their table.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <div class="eyebrow">Prep</div>
+    <h2>Materials to prep</h2>
+  </div>
+
+  <div class="materials">
+    <div class="material-card">
+      <h3>Already exist &mdash; just need formatting</h3>
+      <ul>
+        <li><b>3-scenario ROI infographic</b> &mdash; print as a table handout or single slide</li>
+        <li><b>Wayland Furniture &amp; Stephen Key/P&amp;G stories</b> &mdash; write up as one-paragraph case cards, one per table</li>
+        <li>Rich's own <b>&ldquo;Rembrandts in the Attic&rdquo;</b> clip &mdash; optional 60-second play before Exercise 1</li>
+      </ul>
+    </div>
+    <div class="material-card">
+      <h3>Still need to be built</h3>
+      <ul>
+        <li>A simple <b>worksheet</b> for Exercise 2 (4-category checklist + 2 discussion questions)</li>
+        <li><b>Table case cards</b> for Exercise 1 (3 versions, one per table group)</li>
+        <li>Confirm whether this connects to the <b>Dr. Scott Peck / museum case study</b> already planned for the same Hero Club session, or runs as a separate block</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <b>Open question for Pete:</b> does this workshop replace or run alongside the Scott Peck introduction planned for the same November session? If alongside, the two need a shared throughline so the room doesn't get two disconnected case studies back to back.
+  </div>
+
+  <a class="back-link" href="https://marcelapayarescsn.github.io/rich-goldstein/mapa-mental/">&larr; Back to Content Pipeline Map</a>
+
+  <div class="footnote">Rich Goldstein &middot; Hero Club Workshop Outline &mdash; prepared by C-Suite Network from the working draft.</div>
+</div>
+</body>
+</html>
